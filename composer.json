@@ -1,0 +1,49 @@
+{
+  "name": "aleksei4er/task-bookmarks",
+  "description": "A task bookmarks",
+  "license": "MIT",
+  "keywords": [
+    "task",
+    "bookmarks"
+  ],
+  "type": "library",
+  "authors": [
+    {
+      "name": "",
+      "email": ""
+    }
+  ],
+  "require": {
+    "php": ">=7.2",
+    "illuminate/support": "^6.0|^7.0"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^4.0|^5.0",
+    "phpunit/phpunit": "^8.4|^9.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Aleksei4er\\TaskBookmarks\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Aleksei4er\\TaskBookmarks\\Tests\\": "tests"
+    }
+  },
+  "scripts": {
+    "phpunit": "phpunit"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Aleksei4er\\TaskBookmarks\\ServiceProvider"
+      ]
+    }
+  },
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "optimize-autoloader": true
+  }
+}
