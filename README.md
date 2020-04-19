@@ -7,7 +7,7 @@
 [![Packagist](https://poser.pugx.org/aleksei4er/task-bookmarks/d/total.svg)](https://packagist.org/packages/aleksei4er/task-bookmarks)
 [![Packagist](https://img.shields.io/packagist/l/aleksei4er/task-bookmarks.svg)](https://packagist.org/packages/aleksei4er/task-bookmarks)
 
-Package description: CHANGE ME
+Package description: This is a Laravel package for fun.
 
 ## Installation
 
@@ -16,15 +16,26 @@ Install via composer
 composer require aleksei4er/task-bookmarks
 ```
 
-### Publish package assets
-
+### Publish package assets for web interface
 ```bash
-php artisan vendor:publish --provider="Aleksei4er\TaskBookmarks\ServiceProvider"
+php artisan vendor:publish --provider="Encore\Admin\AdminServiceProvider"
+```
+
+### Install web interface
+```bash
+php artisan admin:install
 ```
 
 ## Usage
 
-CHANGE ME
+After that, the interface will be available at
+yourdomain.com/admin/bookmarks
+
+If you want to add test data, run 
+
+```bash
+php artisan db:seed --class=BookmarkSeeder
+```
 
 ## Security
 

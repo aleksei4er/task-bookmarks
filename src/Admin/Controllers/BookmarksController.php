@@ -5,10 +5,13 @@ namespace Aleksei4er\TaskBookmarks\Admin\Controllers;
 use Aleksei4er\TaskBookmarks\Admin\Exporters\BookmarkExporter;
 use Aleksei4er\TaskBookmarks\Admin\RowActions\BookmarkDeletion;
 use Aleksei4er\TaskBookmarks\Models\Bookmark;
+use Aleksei4er\TaskBookmarks\Rules\BookmarkUrlUnique;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
+use Encore\Admin\Grid\Filter;
 use Encore\Admin\Show;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\MessageBag;
 
 class BookmarksController extends AdminController
@@ -30,6 +33,9 @@ class BookmarksController extends AdminController
         $grid = new Grid(new Bookmark());
 
         $grid->exporter(new BookmarkExporter());
+
+        $grid->disableFilter();
+        $grid->disableColumnSelector();
 
         $grid->actions(function ($actions) {
             $actions->disableEdit();
@@ -95,11 +101,16 @@ class BookmarksController extends AdminController
         }
 
         $form->saving(function (Form $form) {
-            if (Bookmark::findByUrl($form->url)) {
 
+            $validator = Validator::make(request()->all(), [
+                'url' => ['required', 'url', 'max:2083', new BookmarkUrlUnique],
+                'password' => ['string', 'nullable', 'max:100'],
+            ]);
+
+            if ($validator->fails()) {
                 $error = new MessageBag([
                     'title'   => 'Error',
-                    'message' => 'Bookmark with such url alreay exists',
+                    'message' => $validator->getMessageBag()->all(),
                 ]);
 
                 return back()->with(compact('error'));
