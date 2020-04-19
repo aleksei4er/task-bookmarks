@@ -31,12 +31,6 @@ php artisan admin:install
 After that, the interface will be available at
 yourdomain.com/admin/bookmarks
 
-If you want to add test data, run 
-
-```bash
-php artisan db:seed --class=BookmarkSeeder
-```
-
 ## Security
 
 If you discover any security related issues, please email 
